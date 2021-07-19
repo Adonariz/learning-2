@@ -14,6 +14,12 @@
 
 'use strict';
 
+const ads = document.querySelectorAll('.promo__adv img');
+const promoContent = document.querySelector('.promo__content');
+const promoGenre = promoContent.querySelector('.promo__genre');
+const promoBg = promoContent.querySelector('.promo__bg');
+const promoInteractiveList = document.querySelector('.promo__interactive-list');
+
 const movieDB = {
     movies: [
         "Логан",
@@ -24,3 +30,24 @@ const movieDB = {
     ]
 };
 
+const sortedMovies = movieDB.movies.slice().sort();
+
+ads.forEach(ad => {
+  ad.remove();
+});
+
+promoGenre.textContent = 'драма';
+
+promoBg.style.backgroundImage = 'url("img/bg.jpg")';
+
+promoInteractiveList.innerHTML = '';
+
+sortedMovies.forEach((movie, i) => {
+  promoInteractiveList.innerHTML += `
+    <li class="promo__interactive-item">${i + 1}. ${movie}
+      <div class="delete"></div>
+    </li>
+  `;
+  
+  return promoInteractiveList;
+});
